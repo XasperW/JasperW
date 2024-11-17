@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #004C97;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        .project, .blog-post {
+            margin-bottom: 20px;
+        }
+        .project-title, .blog-post-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .project-description, .blog-post-content {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .fade-in.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <div class="section" id="projects">
+        <h2>Projects</h2>
+        <!-- Projects will be dynamically inserted here -->
+    </div>
+
+    <div class="section" id="blog-posts">
+        <h2>Blog Posts</h2>
+        <!-- Blog posts will be dynamically inserted here -->
+    </div>
+
+    <script>
+        const projects = [
+            { title: "Project 1", description: "Description of project 1." },
+            { title: "Project 2", description: "Description of project 2." }
+        ];
+
+        const blogPosts = [
+            { title: "Blog Post 1", content: "Content of blog post 1." },
+            { title: "Blog Post 2", content: "Content of blog post 2." }
+        ];
+
+        function displayProjects() {
+            const projectsContainer = document.getElementById('projects');
+            projects.forEach(project => {
+                const projectDiv = document.createElement('div');
+                projectDiv.className = 'project fade-in';
+                projectDiv.innerHTML = `
+                    <div class="project-title">${project.title}</div>
+                    <div class="project-description">${project.description}</div>
+                `;
+                projectsContainer.appendChild(projectDiv);
+                setTimeout(() => projectDiv.classList.add('visible'), 100);
+            });
+        }
+
+        function displayBlogPosts() {
+            const blogPostsContainer = document.getElementById('blog-posts');
+            blogPosts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.className = 'blog-post fade-in';
+                postDiv.innerHTML = `
+                    <div class="blog-post-title">${post.title}</div>
+                    <div class="blog-post-content">${post.content}</div>
+                `;
+                blogPostsContainer.appendChild(postDiv);
+                setTimeout(() => postDiv.classList.add('visible'), 100);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProjects();
+            displayBlogPosts();
+        });
+    </script>
+</body>
+</html>
